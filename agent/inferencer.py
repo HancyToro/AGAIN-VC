@@ -110,7 +110,7 @@ class Inferencer(BaseAgent):
                     logger.info(f'Target: {target.path}')
                     source_basename = os.path.basename(source.path).split('.wav')[0]
                     target_basename = os.path.basename(target.path).split('.wav')[0]
-                    output_basename = f'{source_basename}_to_{target_basename}'
+                    output_basename = f'convert_audio_{source_basename}'
                     output_wav = os.path.join(out_path, 'wav', output_basename+'.wav')
                     output_plt = os.path.join(out_path, 'plt', output_basename+'.png')
                     self.process_wave_data(source, seglen=seglen)
@@ -128,6 +128,6 @@ class Inferencer(BaseAgent):
                     Dsp.plot_spectrogram(dec.squeeze().cpu().numpy(), output_plt)
 
                     source_plt = os.path.join(out_path, 'plt', f'{source_basename}.png')
-                    Dsp.plot_spectrogram(source['mel'], source_plt)
-                    np.save(os.path.join(out_path, 'mel', f'{source_basename}.npy'), source['mel'])
+                    #Dsp.plot_spectrogram(source['mel'], source_plt)
+                    #np.save(os.path.join(out_path, 'mel', f'{source_basename}.npy'), source['mel'])
         logger.info(f'The generated files are saved to {out_path}.')
